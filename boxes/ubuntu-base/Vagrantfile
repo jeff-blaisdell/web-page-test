@@ -21,24 +21,4 @@ Vagrant.configure("2") do |config|
     end
 
     config.vm.network :private_network, ip: "192.168.70.4"
-
-    # mount m2
-    # create the maven directory if it does not exist so we can map it
-    maven_dir = File.expand_path("~/.m2")
-    unless File.directory?(maven_dir)
-        Dir.mkdir(maven_dir)
-    end
-    config.vm.synced_folder maven_dir, "/home/vagrant/.m2"
-
-    # mount a custom script folder if the user has a special folder
-    bootstrap_dir = File.expand_path("~/vmbootstrap")
-    if File.directory?(bootstrap_dir)
-        config.vm.synced_folder bootstrap_dir, "/opt/vmbootstrap"
-    end
-
-    # mount provisioning
-    provisioning_dir = File.expand_path("../../vagrant/provisioning")
-    config.vm.synced_folder provisioning_dir, "/opt/chef-solo/provisioning"
-
-  # config.vm.provision :shell, :path => "startup.sh"
 end

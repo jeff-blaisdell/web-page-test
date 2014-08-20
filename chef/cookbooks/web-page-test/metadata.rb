@@ -1,0 +1,11 @@
+name             'web-page-test'
+maintainer       'Jeff Blaisdell'
+maintainer_email 'jeff.blaisdell@gmail.com'
+license          'All rights reserved'
+description      'Installs/Configures web-page-test'
+long_description 'Installs/Configures web-page-test'
+version          '0.1.0'
+
+depends 'apt', '~> 2.5.2'
+depends 'apache2', '~> 2.0.0'
+depends 'php', '~> 1.4.6'

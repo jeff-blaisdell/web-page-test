@@ -1,0 +1,19 @@
+<VirtualHost *:80>
+
+  DocumentRoot /var/www/webpagetest
+
+  <Directory "/var/www/webpagetest">
+    AllowOverride all
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  ErrorLog /var/log/wpt/error.log
+
+  # Possible values include: debug, info, notice, warn, error, crit,
+  # alert, emerg.
+  LogLevel debug
+
+  CustomLog /var/log/apache2/access.log combined
+
+</VirtualHost>

@@ -1,0 +1,48 @@
+; This is a sample locations.ini that includes all of the EC2 locations, AMI's
+; and user data strings necessary to spin up testing using EC2 test agents
+
+; IMPORTANT: Make sure to change the wpt_server to point to your private WPT instance
+;            and replace SecretKey with a unique secret string (alphanumeric, no whitespace)
+
+[locations]
+1=US_E
+2=US_W
+3=US_W2
+4=SA_E
+5=EU_W
+6=AP_SE
+7=AP_NE
+default=US_E
+
+
+;
+; ****** US-East (Virginia) *****
+;
+
+[US_E]
+1=US_East_IE7
+2=US_East_IE8
+3=US_East
+4=US_East_wptdriver
+label="US East (Virginia)"
+lat=38.954980
+lng=-77.447956
+default=US_East_IE8
+
+[US_East_IE7]
+; AMI: ami-fe689397
+; user-data: wpt_server=www.yourserver.com wpt_key=SecretKey wpt_location=US_East_IE7
+browser=IE 7
+latency=0
+label="US East (Virginia) - IE7"
+key=SecretKey
+
+[US_East_IE8]
+; AMI: ami-406f9429
+; user-data: wpt_server=www.yourserver.com wpt_key=SecretKey wpt_location=US_East_IE8
+browser=IE 8
+latency=0
+label="US East (Virginia) - IE8"
+key=SecretKey
+
+[US_East]
