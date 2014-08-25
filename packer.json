@@ -1,0 +1,24 @@
+{
+    "builders": [
+        {
+            "type": "docker",
+            "image": "ubuntu",
+            "export_path": "build/web-page-test.tar"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "apt-get update",
+                "apt-get -y install curl"
+            ]
+        },
+        {
+            "type": "chef-solo",
+            "cookbook_paths": ["berks-cookbooks"],
+            "run_list": ["web-page-test"]
+        }
+    ]
+}

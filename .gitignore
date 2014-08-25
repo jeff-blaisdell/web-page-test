@@ -1,5 +1,6 @@
 .vagrant
 /cookbooks
+/berks-cookbooks
 
 # Bundler
 bin/*
@@ -7,3 +8,4 @@ bin/*
 
 .kitchen/
 .kitchen.local.yml
+Gemfile.lock
