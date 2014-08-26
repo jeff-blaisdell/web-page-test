@@ -15,15 +15,29 @@ gem install bundler
 
 # Install Docker
 apt-get -y install docker.io
-ln -sf /usr/bin/docker.io /usr/local/bin/docker
-sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+if [ ! -f '/usr/local/bin/docker' ]; then
+    ln -sf /usr/bin/docker.io /usr/local/bin/docker
+    sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+    usermod -a -G docker vagrant
+fi
 
 # Install Packer
-mkdir /usr/local/packer
-wget https://dl.bintray.com/mitchellh/packer/0.6.1_linux_386.zip
-unzip 0.6.1_linux_386.zip -d /usr/local/packer
-ln -sf /usr/local/packer/packer /usr/local/bin/packer
-rm -f 0.6.1_linux_386.zip
+if [ ! -d '/usr/local/packer' ]; then
+    mkdir /usr/local/packer
+    wget https://dl.bintray.com/mitchellh/packer/0.6.1_linux_386.zip
+    unzip 0.6.1_linux_386.zip -d /usr/local/packer
+    ln -sf /usr/local/packer/packer /usr/local/bin/packer
+    rm -f 0.6.1_linux_386.zip
+fi
 
+# Kickoff Packer process to build web-page-test images.
 cd /opt/web-page-test
-./packer.sh
+su -c "source /opt/web-page-test/packer.sh" vagrant
+
+# Locally install built image.
+cat /opt/web-page-test/build/web-page-test.tar | docker import - web-page-test
+
+# Locally run docker image.
+# docker run -d web-page-test /bin/sh -c "echo Launching Web Page Test container..."
+# docker run -t -p 80:80 -i web-page-test /bin/bash
+

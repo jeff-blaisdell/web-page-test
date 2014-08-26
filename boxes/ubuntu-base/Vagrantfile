@@ -12,7 +12,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     mem_size = ENV['VAGRANTMANAGER_MEM']
 
     config.vm.provider :virtualbox do |vb|
-        vb.customize ["modifyvm", :id, "--memory", mem_size ? mem_size : 4096]
+        vb.customize ["modifyvm", :id, "--memory", mem_size ? mem_size : 6096]
         vb.customize ["modifyvm", :id, "--cpus",  num_cpus ? num_cpus : 2]
     end
 

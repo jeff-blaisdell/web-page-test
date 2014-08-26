@@ -72,3 +72,8 @@ template "/var/www/webpagetest/settings/settings.ini" do
   source "wpt_settings_ini.erb"
   action :create
 end
+
+include_recipe "apache2::mod_expires"
+include_recipe "apache2::mod_headers"
+include_recipe "apache2::mod_rewrite"
+include_recipe "apache2::mod_php5"
