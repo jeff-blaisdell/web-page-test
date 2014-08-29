@@ -1,6 +1,7 @@
 .vagrant
 /cookbooks
 /berks-cookbooks
+/build
 
 # Bundler
 bin/*
