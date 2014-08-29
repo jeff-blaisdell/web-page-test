@@ -15,18 +15,12 @@ gem install bundler
 #sed -i 'vagrant   ALL = NOPASSWD: ALL' /etc/sudoers
 
 # Install Docker
-# apt-get -y install docker.io
-# if [ ! -f '/usr/local/bin/docker' ]; then
-#     ln -sf /usr/bin/docker.io /usr/local/bin/docker
-#     sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
-#     usermod -a -G docker vagrant
-# fi
-
-apt-get -y install linux-image-generic-lts-raring linux-headers-generic-lts-raring
-# reboot
-apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 36A1D7869245C8950F966E92D8576A8BA88D21E9
-sh -c "echo deb https://get.docker.io/ubuntu docker main > /etc/apt/sources.list.d/docker.list"
-apt-get -y install lxc-docker
+apt-get -y install docker.io
+if [ ! -f '/usr/local/bin/docker' ]; then
+    ln -sf /usr/bin/docker.io /usr/local/bin/docker
+    sed -i '$acomplete -F _docker docker' /etc/bash_completion.d/docker.io
+    usermod -a -G docker vagrant
+fi
 
 # Install Packer
 if [ ! -d '/usr/local/packer' ]; then
@@ -47,4 +41,5 @@ cat /opt/web-page-test/build/web-page-test.tar | docker import - web-page-test
 # Locally run docker image.
 # docker run -d web-page-test /bin/sh -c "echo Launching Web Page Test container..."
 # docker run -t -p 80:80 -i web-page-test /bin/bash
+# docker run -t -i web-page-test /bin/bash
 

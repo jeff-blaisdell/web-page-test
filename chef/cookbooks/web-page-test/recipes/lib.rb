@@ -3,6 +3,10 @@
 include_recipe "apt::default"
 include_recipe "apache2::default"
 
+package "unzip" do
+  action :install
+end
+
 package "imagemagick" do
   action :install
 end
@@ -16,8 +20,8 @@ package "libimage-exiftool-perl" do
 end
 
 # Install FFMPEG
-source_url = "http://johnvansickle.com/ffmpeg/builds/ffmpeg-git-20140825-64bit-static.tar.bz2"
-source_file_name = "ffmpeg-git-20140825-64bit-static"
+source_url = "http://johnvansickle.com/ffmpeg/builds/ffmpeg-git-20140828-64bit-static.tar.bz2"
+source_file_name = "ffmpeg-git-20140826-64bit-static"
 source_file_ext = "tar.bz2"
 source_file_path = "#{Chef::Config[:file_cache_path]}"
 archive_path = "#{source_file_path}/#{source_file_name}.#{source_file_ext}"
