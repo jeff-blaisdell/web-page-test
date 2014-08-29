@@ -1,5 +1,10 @@
 #!/bin/bash
 
+# Setup AWS envirment variables for Packet to use.
+sed -i '$a AWS_USER_NAME='$1 /etc/environment
+sed -i '$a AWS_ACCESS_KEY_ID='$2 /etc/environment
+sed -i '$a AWS_SECRET_ACCESS_KEY='$3 /etc/environment
+
 # Update apt-get repo.
 apt-get update
 
@@ -42,4 +47,5 @@ cat /opt/web-page-test/build/web-page-test.tar | docker import - web-page-test
 # docker run -d web-page-test /bin/sh -c "echo Launching Web Page Test container..."
 # docker run -t -p 80:80 -i web-page-test /bin/bash
 # docker run -t -i web-page-test /bin/bash
+# docker run -t -i -p 80:80 web-page-test /bin/bash
 

@@ -8,8 +8,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.box = "ubuntu/trusty64"
 
-    num_cpus = ENV['VAGRANTMANAGER_CPU']
-    mem_size = ENV['VAGRANTMANAGER_MEM']
+    num_cpus              = ENV['VAGRANTMANAGER_CPU']
+    mem_size              = ENV['VAGRANTMANAGER_MEM']
+    aws_user_name         = ENV['AWS_USER_NAME']
+    aws_access_key_id     = ENV['AWS_ACCESS_KEY_ID']
+    aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
 
     config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", mem_size ? mem_size : 6096]
@@ -22,6 +25,9 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     provisioning_dir = File.expand_path("../../")
     config.vm.synced_folder provisioning_dir, "/opt/web-page-test"
 
-    config.vm.provision :shell, :path => "startup.sh"
+    config.vm.provision "shell" do |s|
+        s.path = "startup.sh"
+        s.args   = ["#{aws_user_name}", "#{aws_access_key_id}", "#{aws_secret_access_key}"]
+    end
 
 end
