@@ -5,44 +5,31 @@
 ;            and replace SecretKey with a unique secret string (alphanumeric, no whitespace)
 
 [locations]
-1=US_E
-2=US_W
-3=US_W2
-4=SA_E
-5=EU_W
-6=AP_SE
-7=AP_NE
-default=US_E
+1=US_W
+default=US_W
 
 
 ;
-; ****** US-East (Virginia) *****
+; ****** US-West (California) *****
 ;
 
-[US_E]
-1=US_East_IE7
-2=US_East_IE8
-3=US_East
-4=US_East_wptdriver
-label="US East (Virginia)"
-lat=38.954980
-lng=-77.447956
-default=US_East_IE8
+[US_W]
+1=US_West
+2=US_West_wptdriver
+label="US West (California)"
+default=US_West_wptdriver
 
-[US_East_IE7]
-; AMI: ami-fe689397
-; user-data: wpt_server=www.yourserver.com wpt_key=SecretKey wpt_location=US_East_IE7
-browser=IE 7
+[US_West]
+; AMI: ami-1e330f5b
+; user-data: wpt_server=wpt.kaleido.io wpt_location=US_West
+browser=IE 11
 latency=0
-label="US East (Virginia) - IE7"
-key=SecretKey
+label="US West (California) - IE11"
+;key=SecretKey
 
-[US_East_IE8]
-; AMI: ami-406f9429
-; user-data: wpt_server=www.yourserver.com wpt_key=SecretKey wpt_location=US_East_IE8
-browser=IE 8
+[US_West_wptdriver]
+; uses same instance as US_West (make sure the SecretKey is the same for both)
+browser=Chrome,Firefox
 latency=0
-label="US East (Virginia) - IE8"
-key=SecretKey
-
-[US_East]
+label="US West (California)"
+;key=SecretKey

@@ -11,9 +11,9 @@ package "libpcre3-dev" do
   action :install
 end
 
-php_pear "zip" do
-  action :install
-end
+#php_pear "zip" do
+  #action :install
+#end
 
 package "php5-gd" do
   action :install
