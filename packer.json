@@ -1,6 +1,15 @@
 {
     "builders": [
         {
+          "type": "amazon-ebs",
+          "region": "us-west-1",
+          "ssh_username": "ubuntu",
+          "source_ami": "ami-73ede236",
+          "instance_type": "t1.micro",
+          "ami_name": "web-page-test {{timestamp}}",
+          "associate_public_ip_address": true
+        },
+        {
             "type": "docker",
             "image": "ubuntu",
             "export_path": "build/web-page-test.tar"
@@ -11,8 +20,8 @@
         {
             "type": "shell",
             "inline": [
-                "apt-get update",
-                "apt-get -y install curl"
+                "sudo apt-get update",
+                "sudo apt-get -y install curl"
             ]
         },
         {
