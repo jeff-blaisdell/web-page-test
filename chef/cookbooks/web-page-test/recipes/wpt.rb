@@ -76,11 +76,19 @@ end
 bash 'set_privs' do
     cwd ::File.dirname("/var/www")
     code <<-EOH
-      chown -R #{node['apache']['user']}:#{node['apache']['group']} webpagetest/
+      chown -R #{node['apache']['user']}:#{node['apache']['group']} /var/www/webpagetest
       EOH
 end
 
 template "/etc/php5/apache2/php.ini" do
   source "php_ini.erb"
   action :create
+end
+
+service "apache2" do
+  action :stop
+end
+
+service "apache2" do
+  action :start
 end
