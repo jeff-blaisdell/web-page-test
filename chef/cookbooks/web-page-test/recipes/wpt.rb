@@ -73,7 +73,14 @@ template "/var/www/webpagetest/settings/settings.ini" do
   action :create
 end
 
-include_recipe "apache2::mod_expires"
-include_recipe "apache2::mod_headers"
-include_recipe "apache2::mod_rewrite"
-include_recipe "apache2::mod_php5"
+bash 'set_privs' do
+    cwd ::File.dirname("/var/www")
+    code <<-EOH
+      chown -R #{node['apache']['user']}:#{node['apache']['group']} webpagetest/
+      EOH
+end
+
+template "/etc/php5/apache2/php.ini" do
+  source "php_ini.erb"
+  action :create
+end

@@ -3,6 +3,10 @@
 include_recipe "apt::default"
 include_recipe "apache2::default"
 
+include_recipe "apache2::mod_expires"
+include_recipe "apache2::mod_headers"
+include_recipe "apache2::mod_rewrite"
+
 package "unzip" do
   action :install
 end

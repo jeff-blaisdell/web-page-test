@@ -1,9 +1,12 @@
 #!/bin/bash
 
-# Setup AWS envirment variables for Packet to use.
+# Setup environment variables for Packer.
 sed -i '$a AWS_USER_NAME='$1 /etc/environment
 sed -i '$a AWS_ACCESS_KEY_ID='$2 /etc/environment
 sed -i '$a AWS_SECRET_ACCESS_KEY='$3 /etc/environment
+sed -i '$a DOCKER_USER_NAME='$4 /etc/environment
+sed -i '$a DOCKER_PASSWORD='$5 /etc/environment
+sed -i '$a DOCKER_EMAIL='$6 /etc/environment
 
 # Update apt-get repo.
 apt-get update
@@ -37,11 +40,11 @@ if [ ! -d '/usr/local/packer' ]; then
 fi
 
 # Kickoff Packer process to build web-page-test images.
-cd /opt/web-page-test
-su -c "source /opt/web-page-test/packer.sh" vagrant
+#cd /opt/web-page-test
+#su -c "source /opt/web-page-test/packer.sh" vagrant
 
 # Locally install built image.
-cat /opt/web-page-test/build/web-page-test.tar | docker import - web-page-test
+#cat /opt/web-page-test/build/web-page-test.tar | docker import - web-page-test
 
 # Locally run docker image.
 # docker run -d web-page-test /bin/sh -c "echo Launching Web Page Test container..."

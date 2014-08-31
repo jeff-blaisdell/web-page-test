@@ -29,5 +29,17 @@
             "cookbook_paths": ["berks-cookbooks"],
             "run_list": ["web-page-test"]
         }
+    ],
+
+    "post-processors": [
+        [
+            {
+                "type": "docker-import",
+                "repository": "jeffblaisdell/web-page-test",
+                "tag": "0.1"
+            },
+            "docker-push"
+        ]
     ]
+
 }
