@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Depends on https://github.com/mitchellh/vagrant-aws
+# vagrant up --provider=aws
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+
+    aws_user_name         = ENV['AWS_USER_NAME']
+    aws_access_key_id     = ENV['AWS_ACCESS_KEY_ID']
+    aws_secret_access_key = ENV['AWS_SECRET_ACCESS_KEY']
+    aws_keypair_name      = ENV['AWS_KEYPAIR_NAME']
+
+    config.vm.box = "dummy"
+    config.vm.box_url = "https://github.com/mitchellh/vagrant-aws/raw/master/dummy.box"
+    config.ssh.username = "ubuntu"
+    config.ssh.private_key_path = "~/.ssh/#{aws_keypair_name}.pem"
+
+    config.vm.provider :aws do |aws, override|
+        aws.access_key_id = aws_access_key_id
+        aws.secret_access_key = aws_secret_access_key
+        aws.keypair_name = aws_keypair_name
+        aws.region = "us-west-1"
+        aws.ami = "ami-7dede238"
+        aws.instance_type = "m3.medium"
+        aws.security_groups = [ "wpt-web-server" ]
+        aws.tags = {
+            'Name' => 'wpt-web-server'
+        }
+    end
+
+    config.vm.provision "shell" do |s|
+        s.path = "startup.sh"
+    end  
+
+end
