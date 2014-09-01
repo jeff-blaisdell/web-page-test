@@ -23,6 +23,15 @@ package "libimage-exiftool-perl" do
   action :install
 end
 
+package "supervisor" do 
+  action :install
+end
+
+template "/etc/supervisor/conf.d/apache2d.conf" do
+  source "apache2d_conf.erb"
+  action :create
+end
+
 # Install FFMPEG
 source_file_name = "ffmpeg-2.3.2-64bit-static"
 source_file_ext = "tar.bz2"

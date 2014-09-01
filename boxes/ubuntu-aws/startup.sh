@@ -11,4 +11,4 @@ if [ ! -f '/usr/local/bin/docker' ]; then
     usermod -a -G docker ubuntu
 fi
 
-docker run -d jeffblaisdell/web-page-test:latest /bin/sh -c "echo Launching Web Page Test container..."
+docker run -d -p 80:80 jeffblaisdell/web-page-test:0.1 /bin/sh -c "/usr/bin/supervisord -c /etc/supervisor/conf.d/apache2d.conf"

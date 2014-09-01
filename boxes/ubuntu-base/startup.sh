@@ -47,8 +47,6 @@ fi
 #cat /opt/web-page-test/build/web-page-test.tar | docker import - web-page-test
 
 # Locally run docker image.
-# docker run -d web-page-test /bin/sh -c "echo Launching Web Page Test container..."
-# docker run -t -p 80:80 -i web-page-test /bin/bash
-# docker run -t -i web-page-test /bin/bash
-# docker run -t -i -p 80:80 web-page-test /bin/bash
+# docker run -t -i -p 80:80 jeffblaisdell/web-page-test:0.1 /bin/bash
+# docker run -d -p 80:80 jeffblaisdell/web-page-test:0.1 /bin/sh - c "/usr/bin/supervisord -c /etc/supervisor/conf.d/apache2d.conf"
 
