@@ -26,7 +26,7 @@ web_app "wpt" do
    server_name node['web-page-test']['wpt']['server_name']
 end
 
-directory "/var/log/wpt" do
+directory "/var/log/webpagetest" do
   owner "root"
   group "root"
   mode 00644
