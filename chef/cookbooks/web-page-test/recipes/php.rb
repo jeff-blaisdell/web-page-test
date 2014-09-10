@@ -1,7 +1,4 @@
 ## Install PHP and required PHP libs.
-# PHP5.5.x conf.d directory moved.
-node.default['php']['ext_conf_dir'] = '/etc/php5/apache2/conf.d'
-## Install PHP and required PHP libs.
 include_recipe "apt::default"
 include_recipe "php::default"
 include_recipe "apache2::mod_php5"

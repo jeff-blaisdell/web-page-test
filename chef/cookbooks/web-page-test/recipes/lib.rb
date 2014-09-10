@@ -2,7 +2,6 @@
 
 include_recipe "apt::default"
 include_recipe "apache2::default"
-
 include_recipe "apache2::mod_expires"
 include_recipe "apache2::mod_headers"
 include_recipe "apache2::mod_rewrite"
@@ -23,7 +22,7 @@ package "libimage-exiftool-perl" do
   action :install
 end
 
-package "supervisor" do 
+package "supervisor" do
   action :install
 end
 
@@ -33,13 +32,13 @@ template "/etc/supervisor/conf.d/apache2d.conf" do
 end
 
 # Install FFMPEG
-source_file_name = "ffmpeg-2.3.2-64bit-static"
-source_file_ext = "tar.bz2"
-source_url = "http://johnvansickle.com/ffmpeg/releases/#{source_file_name}.#{source_file_ext}"
-source_file_path = "#{Chef::Config[:file_cache_path]}"
-archive_path = "#{source_file_path}/#{source_file_name}.#{source_file_ext}"
-extract_path = "/usr/local/ffmpeg"
-bin_path = "/usr/local/bin/ffmpeg"
+source_file_name = node['web-page-test']['ffmpeg']['source_file_name']
+source_file_ext  = node['web-page-test']['ffmpeg']['source_file_ext']
+source_url       = node['web-page-test']['ffmpeg']['source_url']
+source_file_path = node['web-page-test']['ffmpeg']['source_file_path']
+archive_path     = node['web-page-test']['ffmpeg']['archive_path']
+extract_path     = node['web-page-test']['ffmpeg']['extract_path']
+bin_path         = node['web-page-test']['ffmpeg']['bin_path']
 
 remote_file archive_path do
   source source_url

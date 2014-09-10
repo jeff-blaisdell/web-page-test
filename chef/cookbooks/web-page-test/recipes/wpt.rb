@@ -1,10 +1,10 @@
 ## Install Web-Page-Test application and configure.
-source_url = "https://github.com/WPO-Foundation/webpagetest/releases/download/WebPagetest-2.15/webpagetest_2.15.zip"
-source_file_name = "webpagetest_2.15"
-source_file_ext = "zip"
-source_file_path = "#{Chef::Config[:file_cache_path]}"
-archive_path = "#{source_file_path}/#{source_file_name}.#{source_file_ext}"
-extract_path = "/var/www/webpagetest"
+source_file_name = node['web-page-test']['wpt']['source_file_name']
+source_file_ext  = node['web-page-test']['wpt']['source_file_ext']
+source_url       = node['web-page-test']['wpt']['source_url']
+source_file_path = node['web-page-test']['wpt']['source_file_path']
+archive_path     = node['web-page-test']['wpt']['archive_path']
+extract_path     = node['web-page-test']['wpt']['extract_path']
 
 remote_file archive_path do
   source source_url
@@ -23,7 +23,7 @@ end
 
 web_app "wpt" do
    template 'wpt_apache_conf.erb'
-   server_name 'wpt.kaleido.io'
+   server_name node['web-page-test']['wpt']['server_name']
 end
 
 directory "/var/log/wpt" do
