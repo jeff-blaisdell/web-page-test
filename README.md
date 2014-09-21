@@ -15,7 +15,7 @@ Before you begin you'll need to create an Amazon AWS IAM account.  We'll use the
 You will also need a Docker Hub account.  See [Docker Hub] for details.  We'll use Docker Hub as a repository for our Web Page Test machine images.
 
 #### Setup Environment Variables
-You'll need to create the following environment variables in your system.  The variables will need to available to command line scripts.  For example, I run zsh on osx - so I set my environment files in ~/.zshenv
+You'll need to create the following environment variables in your system.  The variables will need to be available to command line scripts.  For example, I run zsh on osx - so I define my environment vars in ~/.zshenv
 ```
 # Amazon EC2 IAM Variables
 export AWS_USER_NAME="XXXX"
