@@ -40,10 +40,11 @@ vagrant up
 # After box has been created let's ssh into box to build our docker image.
 vagrant ssh
 
-# Change directory into the web-page-test directory.
+# From within Ubuntu VM, change directory into the web-page-test directory.
 cd /opt/web-page-test
 
-# Kickoff Packer.  This will build a Docker image with all necessary software and push artifact for Docker Hub.
+# Kickoff Packer.  This will build a Docker image with all necessary 
+# software and push artifact to Docker Hub.
 ./packer.sh
 ```
 
